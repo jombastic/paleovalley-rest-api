@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [LoginController::class, 'register'])->name('register');
+Route::get('/', function () {
+    return redirect()->route('products');
+});
+
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 
 Route::middleware('auth:sanctum')->group(function() {

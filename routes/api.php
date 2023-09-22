@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('products');
-});
-
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 
 Route::middleware('auth:sanctum')->group(function() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!Gate::allows('update-product')) {
+            return response()->json([
+                'message' => 'You are not allowed to create a product'
+            ], 403);
+        }
     }
 
     /**
@@ -45,7 +50,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if (!Gate::allows('update-product')) {
+            return response()->json([
+                'message' => 'You are not allowed to update a product'
+            ], 403);
+        }
     }
 
     /**
@@ -53,6 +62,10 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!Gate::allows('update-product')) {
+            return response()->json([
+                'message' => 'You are not allowed to delete a product'
+            ], 403);
+        }
     }
 }
